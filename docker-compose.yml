@@ -1,29 +1,36 @@
 services:
-  postgresql17:
-    container_name: postgresql17
+  postgres:
     image: postgres:17-alpine
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=Thang123
+      - POSTGRES_DB=simple_bank
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: Thang123
-      POSTGRES_DB: simple_bank
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d simple_bank"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
     networks:
       - simple_bank
 
   api:
-    container_name: api
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8811:8811"
     environment:
-      - DB_SOURCE=root:Thang123@postgresql17:5432/simple_bank?sslmode=disable
+      - DB_SOURCE=postgresql://root:Thang123@postgres:5432/simple_bank?sslmode=disable
+      - GIN_MODE=release
     networks:
       - simple_bank
     depends_on:
-      - postgresql17
+      postgres:
+        condition: service_healthy
+        restart: true
 
 networks:
   simple_bank:
