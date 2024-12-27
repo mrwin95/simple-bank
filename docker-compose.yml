@@ -1,0 +1,30 @@
+services:
+  postgresql17:
+    container_name: postgresql17
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: Thang123
+      POSTGRES_DB: simple_bank
+    networks:
+      - simple_bank
+
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8811:8811"
+    environment:
+      - DB_SOURCE=root:Thang123@postgresql17:5432/simple_bank?sslmode=disable
+    networks:
+      - simple_bank
+    depends_on:
+      - postgresql17
+
+networks:
+  simple_bank:
+    driver: bridge
