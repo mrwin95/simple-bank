@@ -201,3 +201,7 @@ Looking for alternatives? [https://awesome-go.com/#database](https://awesome-go.
 Viper
 
 Test
+
+Login ecr
+
+aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 792248914698.dkr.ecr.ap-northeast-1.amazonaws.com/simplebank
