@@ -205,3 +205,13 @@ Test
 Login ecr
 
 aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 792248914698.dkr.ecr.ap-northeast-1.amazonaws.com/simplebank
+
+install kubernetes:
+
+1. run deployment
+2. deploy service (in clusterIP)
+3. deploy ingress (with nginx ingress controller kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0-beta.0/deploy/static/provider/aws/deploy.yaml)
+
+insert tls:
+
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.2/cert-manager.yaml
