@@ -16,7 +16,8 @@ func TestPasetoMaker(t *testing.T) {
 	username := util.RandomOwner()
 	duration := time.Minute
 
-	token, err := maker.CreateToken(username, duration)
+	token, payload, err := maker.CreateToken(username, duration)
 	require.NoError(t, err)
 	require.NotEmpty(t, token)
+	require.NotEmpty(t, payload)
 }
