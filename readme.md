@@ -204,7 +204,7 @@ Test
 
 Login ecr
 
-aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 792248914698.dkr.ecr.ap-northeast-1.amazonaws.com/simplebank
+aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin xxxx.dkr.ecr.ap-northeast-1.amazonaws.com/simplebank
 
 install kubernetes:
 
