@@ -215,3 +215,7 @@ install kubernetes:
 insert tls:
 
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.2/cert-manager.yaml
+
+# migration to add_sessions
+
+migrate create -ext sql -dir db/migration -seq add_sessions
