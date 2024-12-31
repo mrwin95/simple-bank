@@ -219,3 +219,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 # migration to add_sessions
 
 migrate create -ext sql -dir db/migration -seq add_sessions
+
+# install zero log
+
+go get -u github.com/rs/zerolog/log

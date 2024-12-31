@@ -25,6 +25,7 @@ func main() {
 	store := db.NewStore(conn)
 	server, err := api.NewServer(config, store)
 
+	// handler := util.HttpLogger(server.Router)
 	if err != nil {
 		log.Fatal("cannot create server:", err)
 	}
